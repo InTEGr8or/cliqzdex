@@ -1,5 +1,7 @@
 description: >
   Not-Implemented.
+
+  Will perform a flashcard type quiz on all AWS services.
 duration: 0
 questions: []
 services:

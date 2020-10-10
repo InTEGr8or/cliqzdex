@@ -20,50 +20,56 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+def write_yaml(out_file, yaml_obj):
+    f = open(f"{ROOT_DIR}{out_file}.yaml", "w")
+    f.write(yaml.dump(yaml_obj, width=110))
+    f.close()
+    pass
+
+def prod_url(service_name): return f"https://aws.amazon.com/{str.lower(service_name)}"
+def cli_url(service_name): return f"https://awscli.amazonaws.com/v2/documentation/api/latest/reference/{str.lower(service_name)}/index.html"
+def docs_url(service_name): return f""
+
+CLI_XPATH = '//*[@id="description"]/p'
+PROD_XPATH = '//*[@id="aws-page-content"]/main/div[3]'
+
+re_2space = re.compile(r"\s{2,20}")
+re_1stspace = re.compile(r"^\s|\s{2,20}|\s$")
+
+def extract_from_nodes(nodes):
+    if(len(nodes) == 0): return ""
+    node = nodes[0]
+    mdown = markdownify(lxml.html.tostring(node))
+    mdown = re_1stspace.sub("", mdown)
+    mdown = re_2space.sub(" ", mdown)
+    return mdown
+
+def get_cli_desc_nodes(service_name):
+    url = cli_url(service_name)
+    response = requests.get(url)
+    nodes = lxml.html.fromstring(response.text).xpath(CLI_XPATH)
+    return nodes, url
+
 def loop_file(file_name):
+    """Open service list and fetch descriptions from reliable sources"""
     out_services = []
     omitted_services = []
-    re_2space = re.compile(r"\s{2,20}")
-    re_1stspace = re.compile(r"^\s|\s{2,20}|\s$")
-    re_colon = re.compile(r":")
     with open(file_name) as file:
         services = yaml.load(file, yaml.FullLoader)['services']
         for service in tqdm(services):
-            url = "add-object-type-to-if-ladder"
-            if(isinstance(service, str)):
-                url = f"https://awscli.amazonaws.com/v2/documentation/api/latest/reference/{str.lower(service)}/index.html"
-            elif(isinstance(service, dict)):
-                url = service['url']
-            #TODO: query aws-cli for services that don't http.
-            response = requests.get(url)
-            if(response.status_code != 200):
-                help_text = os.system(f"aws {service} help")
-            tree = lxml.html.fromstring(response.text)
-            nodes = tree.xpath('//*[@id="description"]/p')
-
-            if(len(nodes) > 0):
-                node = nodes[0]
-                mdown = markdownify(lxml.html.tostring(node))
-                mdown = re_1stspace.sub("", mdown)
-                mdown = re_2space.sub(" ", mdown)
-                # mdown = re_colon.sub(";", mdown)
+            nodes, url = get_cli_desc_nodes(service)
+            desc = extract_from_nodes(nodes)
+            if(len(desc)):
                 out_services.append({f"{service}": {
                     "url": url,
-                    "description": mdown
+                    "description": desc
                 } })
-                # print(f"{bcolors.OKGREEN}{service}{bcolors.ENDC}", mdown)
             else:
-                # print(f"{bcolors.WARNING}{service}{bcolors.ENDC}")
                 omitted_services.append(service)
 
-    # TODO: break out into funnction
-    f = open(f"{ROOT_DIR}aws_omitted_services.yaml", "w")
-    f.write(yaml.dump(omitted_services, width=110))
-    f.close()
+    # output service descriptions and any missed items.
+    write_yaml("aws_omitted_services", omitted_services)
+    write_yaml("aws_services_descriptions", out_services)
 
-    f = open(f"{ROOT_DIR}aws_services_descriptions.yaml", "w")
-    f.write(yaml.dump(out_services, width=110))
-    f.close()
-name_file = "D:/T3/Git/cliqz/cliqz/quizzes/aws_service_names.yaml"
 name_file = "D:/T3/Git/cliqzdex/quizzes/aws_exams/aws_service_names.yaml"
 loop_file(name_file)
