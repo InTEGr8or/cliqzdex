@@ -7,6 +7,7 @@ from tqdm import tqdm
 import re
 
 
+
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) + "/"
 print(ROOT_DIR)
 class bcolors:
@@ -28,10 +29,17 @@ def loop_file(file_name):
     with open(file_name) as file:
         services = yaml.load(file, yaml.FullLoader)['services']
         for service in tqdm(services):
-            url = f"https://aws.amazon.com/{str.lower(service)}"
-            response = requests.get(url).text
-            tree = lxml.html.fromstring(response)
-            nodes = tree.xpath('//*[@id="aws-page-content"]/main/div[3]')
+            url = "add-object-type-to-if-ladder"
+            if(isinstance(service, str)):
+                url = f"https://awscli.amazonaws.com/v2/documentation/api/latest/reference/{str.lower(service)}/index.html"
+            elif(isinstance(service, dict)):
+                url = service['url']
+            #TODO: query aws-cli for services that don't http.
+            response = requests.get(url)
+            if(response.status_code != 200):
+                help_text = os.system(f"aws {service} help")
+            tree = lxml.html.fromstring(response.text)
+            nodes = tree.xpath('//*[@id="description"]/p')
 
             if(len(nodes) > 0):
                 node = nodes[0]
@@ -48,6 +56,7 @@ def loop_file(file_name):
                 # print(f"{bcolors.WARNING}{service}{bcolors.ENDC}")
                 omitted_services.append(service)
 
+    # TODO: break out into funnction
     f = open(f"{ROOT_DIR}aws_omitted_services.yaml", "w")
     f.write(yaml.dump(omitted_services, width=110))
     f.close()
@@ -55,5 +64,6 @@ def loop_file(file_name):
     f = open(f"{ROOT_DIR}aws_services_descriptions.yaml", "w")
     f.write(yaml.dump(out_services, width=110))
     f.close()
-
-loop_file('D:/T3/Git/cliqz/cliqz/quizzes/aws_service_names.yaml')
+name_file = "D:/T3/Git/cliqz/cliqz/quizzes/aws_service_names.yaml"
+name_file = "D:/T3/Git/cliqzdex/quizzes/aws_exams/aws_service_names.yaml"
+loop_file(name_file)

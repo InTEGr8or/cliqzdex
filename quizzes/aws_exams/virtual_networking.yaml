@@ -1,0 +1,13 @@
+description: VPNs, APNs, VPCs
+questions:
+- item:
+  title: What Is an APN?
+  valid_items:
+  - An Access Point Name allows device’s network to connect to the internet.
+  description: >
+    With the APN settings in place, your device builds a connection to a carrier’s gateway. Part of this process involves the carrier using a defined APN to choose the assigned IP address(s) and security settings where applicable. An Access Point Name (APN) allows device’s network to connect to the internet. With the APN settings in place, your device builds a connection to a carrier’s gateway. Part of this process involves the carrier using a defined APN to choose the assigned IP address(s) and security settings where applicable.
+- item:
+  title: What's VRF?
+  valid_items:  Virtual Routing and Forwarding provides a way for you to configure multiple routing instances on your router.
+  description: >
+    This is beneficial if you have a need to keep customer traffic and routing separate and you want to utilize the same hardware. Some may be thinking that you can keep customers separate by using sub-interfaces or different physical interfaces, and then use ACL filtering to keep traffic segregated. This would certainly be one method of doing so, however, if for some reason you wanted to overlap customer addressing, you'd have a serious problem. With a VRF you can use the same IP address assigned to two different interfaces on a router at the same time.
