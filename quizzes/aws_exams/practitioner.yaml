@@ -78,3 +78,25 @@ questions:
   - Prepare for security events
   notes: >
     [Design Principles - AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/sec-design.html)
+- item:
+  title: Which features are included in the AWS Business Support Plan? (Choose TWO)
+  type: choose_items
+  valid_choices:
+  - 24x7 access to customer service
+  - "Production system down: < 1 hour"
+  - AWS Support API
+  - Interoperability and configuration guidance and troubleshooting
+  - Access to Infrastructure Event Management for additional fee
+  - Full set of checks
+  - Unlimited cases / unlimited contacts (IAM supported)
+  - Contextual to your use-cases
+  false_choices:
+  - Access to proactive reviews, workshops, and deep dives
+  - Access to online self-paced labs
+  - Concierge Support Team
+  - Access to proactive reviews, workshops, and deep dives
+  - Well-Architected Reviews
+  - Infrastructure Event Management
+  - "Business-critical system down: < 15 minutes"
+  notes: >
+    [Compare Support Plans | Developer, Business, Enterprise | AWS Support](https://aws.amazon.com/premiumsupport/plans/)
