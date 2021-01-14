@@ -1,6 +1,14 @@
 description: A practice exam for the AWS Certified Cloud Practioner (CFL-01) Exam.
 duration_minutes: 40
 questions:
+- item: 
+  title: Describe AWS PaaS?
+  type: choose_items
+  valid_choices:
+  - Removes the need for your organization to manage the underlying infrastructure (usually hardware and operating systems) and allows you to focus on the deployment and management of your applications. This helps you be more efficient as you don’t need to worry about resource procurement, capacity planning, software maintenance, patching, or any of the other undifferentiated heavy lifting involved in running your application.
+  false_choices:
+  - Contains the basic building blocks for cloud IT and typically provides access to networking features, computers (virtual or on dedicated hardware), and data storage space. This provides you with the highest level of flexibility and management control over your IT resources and is most similar to existing IT resources that many IT departments and developers are familiar with today.
+  - Provides you with a completed product that is run and managed by the service provider. In most cases, people referring to this are referring to end-user applications. With a SaaS offering you do not have to think about how the service is maintained or how the underlying infrastructure is managed; you only need to think about how you will use that particular piece of software. A common example of a SaaS application is web-based email which you can use to send and receive email without having to manage feature additions to the email product or maintain the servers and operating systems that the email program is running on.
 - item:
   title: What is the other pillar of the Five Pillars of Well-Architected Framework?
   type: missing_item
@@ -44,11 +52,13 @@ questions:
   - 10.0.0.0/28
   - 10.0.0.0/16
 - item:
-  title: Which of the following are true of a default VPC? (select TWO)
+  title: Which of the following are true of a default VPC? (Choose TWO)
   type: choose_items
+  choose_quantity: 2
   false_choices:
   - A default VPC spans multiple regions.
   - AWS creates a default VPC in each Availability Zone.
+  - There is no default VPC.
   valid_choices:
   - By default each VPC is available to one AWS account.
   - AWS creates a default VPC in each Region.
@@ -81,6 +91,7 @@ questions:
 - item:
   title: Which features are included in the AWS Business Support Plan? (Choose TWO)
   type: choose_items
+  choose_qantity: 2
   valid_choices:
   - 24x7 access to customer service
   - "Production system down: < 1 hour"
