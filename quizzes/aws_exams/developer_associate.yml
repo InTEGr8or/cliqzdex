@@ -1,0 +1,93 @@
+description: Practice exam for Developer Associate (DA-01) Exam.
+duration_minutes: 130
+questions:
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 5kb items at 4 reads/second eventual consistency should providion:
+  valid_choices:
+  - 4 RCU
+  false_choices:
+  - 3 RCU
+  - 20 RCU
+  - 10 RCU
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 12kb items at 11 reads/second eventual consistency should providion:
+  valid_choices:
+  - 17 RCU
+  false_choices:
+  - 22 RCU
+  - 28 RCU
+  - 34 RCU
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 5kb items at 4 reads/second eventual consistency should providion:
+  valid_choices:
+  - 16 RCU
+  false_choices:
+  - 28 RCU
+  - 20 RCU
+  - 14 RCU
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 5kb items at 4 reads/second eventual consistency should providion:
+  valid_choices:
+  - 12 RCU
+  false_choices:
+  - 3 RCU
+  - 20 RCU
+  - 10 RCU
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 5kb items at 4 reads/second eventual consistency should providion:
+  valid_choices:
+  - 4 RCU
+  false_choices:
+  - 3 RCU
+  - 20 RCU
+  - 10 RCU
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 5kb items at 4 reads/second eventual consistency should providion:
+  valid_choices:
+  - 4 RCU
+  false_choices:
+  - 3 RCU
+  - 20 RCU
+  - 10 RCU
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 5kb items at 4 reads/second eventual consistency should providion:
+  valid_choices:
+  - 4 RCU
+  false_choices:
+  - 3 RCU
+  - 20 RCU
+  - 10 RCU
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 5kb items at 4 reads/second eventual consistency should providion:
+  valid_choices:
+  - 4 RCU
+  false_choices:
+  - 3 RCU
+  - 20 RCU
+  - 10 RCU
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 5kb items at 4 reads/second eventual consistency should providion:
+  valid_choices:
+  - 4 RCU
+  false_choices:
+  - 3 RCU
+  - 20 RCU
+  - 10 RCU
+- item:
+  type: choose_items
+  title: A DynamoDB table with average 5kb items at 4 reads/second eventual consistency should providion:
+  valid_choices:
+  - 4 RCU
+  false_choices:
+  - 3 RCU
+  - 20 RCU
+  - 10 RCU
